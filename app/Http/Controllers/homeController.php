@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class homeController extends Controller
@@ -48,6 +49,11 @@ class homeController extends Controller
         }
     
         if ($request->hasFile('avatar')) {
+
+            if ($user->avatar) {
+                File::delete(public_path($user->avatar));
+            }
+
             $image = $request->file('avatar');
             $imageName = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('images/perfil'), $imageName); 

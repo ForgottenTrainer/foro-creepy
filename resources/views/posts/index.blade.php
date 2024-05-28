@@ -33,10 +33,10 @@
             <td>
               <div class="buttons">
                 <a href="{{ route('edit.post', $i->id) }}" class="button is-primary">Editar</a>
-                <form method="POST" action="{{ route('delete.post', $i->id) }}">
+                <button class="button is-danger" onclick="confirmDelete( {{ $i->id }} )">Eliminar</button>
+                <form id="delete-form-{{ $i->id }}" method="POST" action="{{ route('delete.post', $i->id) }}" style="display: none;">
                   @method('DELETE')
                   @csrf
-                  <button class="button is-danger" type="submit">Eliminar</button>
                 </form>
               </div>
             </td>
@@ -47,4 +47,24 @@
     </table>
     
 </div>
+
+<script>
+function confirmDelete(postId) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, bórralo!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('delete-form-' + postId).submit();
+        }
+    });
+}
+</script>
+
 @endsection

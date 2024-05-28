@@ -19,6 +19,8 @@
         </div>
     </body>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="https://kit.fontawesome.com/2157411cb1.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
