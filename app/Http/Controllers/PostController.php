@@ -117,7 +117,6 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        // Eliminar la imagen asociada si existe
         if ($post->image) {
             File::delete(public_path($post->image));
         }

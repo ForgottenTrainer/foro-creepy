@@ -215,6 +215,26 @@
                             </div>
                             <div class="post-footer">
                                 <div class="post-actions">
+                                    <p class="level-item" aria-label="like">
+                                        @foreach ($comentario as $item)
+                                            @if($i->id == $item->id_post)
+                                            
+                                                @foreach ($users as $ite)  
+
+                                                    @if ($item->id_user1 == $ite->id)
+                                                        <a href="{{ route('index.profile', $ite->id) }}" class="m-2"> @ {{ $ite->name }} </a>
+                                                    @endif
+                                                
+                                                @endforeach
+
+                                                {{ $item->comentario }} 
+                                            @endif
+                                        @endforeach
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="post-footer">
+                                <div class="post-actions">
                                     <a class="level-item" aria-label="like">
                                         <a href="{{ route('posts.show', $i->id) }}">Ver creepypasta</a>
                                     </a>

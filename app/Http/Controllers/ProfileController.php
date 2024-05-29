@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comentarios;
 use App\Models\Post;
 use App\Models\SocialMedia;
 use App\Models\User;
@@ -16,10 +17,13 @@ class ProfileController extends Controller
     {
         $social = SocialMedia::all();
         $user = User::findOrFail($id);
+        $users = User::all();
         $post = Post::all();
         $authUserId = Auth::id(); 
+        $comentario = Comentarios::orderByDesc('created_at')->paginate(1);
 
-        return view('userPage.index', compact('id', 'user', 'post', 'authUserId', 'social'));
+
+        return view('userPage.index', compact('id', 'user', 'post', 'authUserId', 'social', 'comentario', 'users'));
     }
     public function create($id)
     {
