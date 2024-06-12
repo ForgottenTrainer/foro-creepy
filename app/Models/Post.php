@@ -15,5 +15,12 @@ class Post extends Model
         'image',
         'categoria'
     ];
+    // app/Models/Post.php
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
     use HasFactory;
 }

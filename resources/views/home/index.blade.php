@@ -6,6 +6,8 @@
 
 @section('contenido')
 
+@if(Auth::guest() || (Auth::user()->report != true))
+
     <div class="mt-5">
         <h3 class="subtitle">Ve los posts más recientes</h3>
         <div class="mt-5">
@@ -54,7 +56,7 @@
                 @endforeach             
             </div>
         </div>
-        <br>
+        <hr>
         <nav class="pagination is-centered" role="navigation" aria-label="pagination">
             <a href="{{ $posts->previousPageUrl() }}" class="pagination-previous" {{ $posts->onFirstPage() ? 'disabled' : '' }}>Previous</a>
             <a href="{{ $posts->nextPageUrl() }}" class="pagination-next" {{ !$posts->hasMorePages() ? 'disabled' : '' }}>Next page</a>
@@ -65,4 +67,33 @@
             </ul>
         </nav>   
     </div>
+
+@else
+
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8 is-offset-2">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">Cuenta baneada</p>
+            </header>
+            <div class="card-content">
+              <p>Su cuenta ha sido baneada.</p>
+              <p>Si cree que esto es un error, por favor contacte a soporte.</p>
+              <br>
+              <form action="" method="post">
+                @csrf
+
+                <textarea class="textarea" placeholder="Envianos un mensaje"></textarea>
+
+                <button class="button is-primary m-2" type="submit">Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+@endif
+
 @endsection

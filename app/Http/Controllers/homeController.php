@@ -22,8 +22,16 @@ class homeController extends Controller
 
     public function show ($id)
     {
+
+
+        if(Auth::user()->status == 'admin')
+        {
+            $user = User::where('id', $id)->get();
+
+            return view('home.show', compact('user','id'));
+        }
         if (Auth::id() != $id) {
-            abort(403); // Devuelve un error 403 si no tiene permiso
+            abort(403); 
         }
         $user = User::where('id', $id)->get();
 

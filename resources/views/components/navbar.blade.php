@@ -43,24 +43,38 @@
             <a class="navbar-link">
               {{ Auth::user()->name }}
             </a>
-    
-            <div class="navbar-dropdown">
-              <a href="{{ route('index.profile', Auth::user()->id) }}" class="navbar-item">
-                Ver mi perfil
-              </a>
-              <a href="{{ route('edit.user', Auth::user()->id) }}" class="navbar-item">
-                Editar Perfil
-              </a>
-              <a href="{{ route('index.post') }}" class="navbar-item">
-                Crear Post
-              </a>
-              <a href="{{ route('index.tablero', Auth::user()->id) }}" class="navbar-item">
-                Administar mis posts
-              </a>
-              <hr class="navbar-divider">
-              <a href="{{ route('logout') }}" class="navbar-item">
-                Salir
-              </a>           
+               
+              @if(Auth::user()->report != true)
+              <div class="navbar-dropdown">
+                <a href="{{ route('index.profile', Auth::user()->id) }}" class="navbar-item">
+                  Ver mi perfil
+                </a>
+                @if (Auth::user()->status == 'admin')
+                <a href="{{ route('index.admin', Auth::user()->id) }}" class="navbar-item">
+                  Panel de control
+                </a>
+                @endif
+                <a href="{{ route('edit.user', Auth::user()->id) }}" class="navbar-item">
+                  Editar Perfil
+                </a>
+                <a href="{{ route('index.post') }}" class="navbar-item">
+                  Crear Post
+                </a>
+                <a href="{{ route('index.tablero', Auth::user()->id) }}" class="navbar-item">
+                  Administar mis posts
+                </a>
+                <hr class="navbar-divider">
+                <a href="{{ route('logout') }}" class="navbar-item">
+                  Salir
+                </a>   
+                @else
+                  <p class="navbar-item">
+                    Estas baneado
+                  </p>
+                @endif
+              </div> 
+
+              
           @endunless
 
           @unless (Auth::check())

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comentarios;
 use App\Models\Post;
+use App\Models\Report;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,9 +51,10 @@ class PostController extends Controller
     {
         $user = User::all();
         $post = Post::where('id', $id)->get();
+        $report = Report::all();
         $comentario = Comentarios::all();
 
-        return view('posts.show', compact('post', 'comentario', 'user'));
+        return view('posts.show', compact('post', 'comentario', 'user', 'report'));
     }
 
     public function table($id)
