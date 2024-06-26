@@ -18,7 +18,8 @@ class AdminController extends Controller
         //
         $users = User::orderBy("created_at","desc")->paginate(5);
         $posts = Post::all();
-        return view('admin.index', compact('users', 'posts'));
+        $report = Report::all();
+        return view('admin.index', compact('users', 'posts', 'report'));
     }
 
     /**
@@ -82,7 +83,6 @@ class AdminController extends Controller
     public function report(Admin $admin)
     {
         $reports = Report::all();
-
         return view('admin.reportes',compact('reports'));
         
     }

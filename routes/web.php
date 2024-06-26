@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ApelacionController;
 use App\Http\Controllers\ComentariosController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\LoginController;
@@ -28,6 +29,7 @@ Route::get('/usuario/editar/{id}', [homeController::class, 'show'])->name('edit.
 Route::get('/post/editar/{id}', [PostController::class, 'update'])->name('edit.post');
 Route::get('/search', [homeController::class, 'search'])->name('index.search');
 Route::get('/usuario-ver/{id}', [ProfileController::class, 'index'])->name('index.profile');
+Route::get('/apelaciones', [ApelacionController::class, 'index'])->name('index.apelacion');
 
 
 Route::post('/posts-create', [PostController::class, 'create'])->name('index.create');

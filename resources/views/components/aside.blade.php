@@ -25,7 +25,7 @@
         <li>
           <a href="{{ route('index.forms', Auth::id()) }}" class="has-icon">
             <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-            <span class="menu-item-label">Formulario</span>
+            <span class="menu-item-label">Formulario admin</span>
           </a>
         </li>
         <li>
@@ -48,7 +48,11 @@
                 <span>Reportados</span>
               </a>
             </li>
-
+            <li>
+              <a href="{{ route('index.apelacion', Auth::id()) }}">
+                <span>Apelaciones</span>
+              </a>
+            </li>
           </ul>
         </li>
       </ul>

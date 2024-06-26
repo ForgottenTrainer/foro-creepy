@@ -59,7 +59,6 @@
             <thead>
                 <tr>
                     <th>Reportado Por</th>
-                    <th>Usuario Reportado</th>
                     <th>Historia Reportada</th>
                     <th>Razon</th>
                     <th>Cuando se creo</th>
@@ -70,7 +69,7 @@
                 @foreach($reports as $report)
                     <tr>
                         <td data-label="Reported By">{{ $report->user->name }}</td>
-                        <td data-label="Reported User">{{ $report->reportedUser->id ?? 'N/A' }}</td>
+
                         <td data-label="Reported Post">{{ $report->post->id ?? 'N/A' }}</td>
                         <td data-label="Reason">{{ $report->reason }}</td>
                         <td data-label="Created">

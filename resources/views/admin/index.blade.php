@@ -87,16 +87,19 @@
               <div class="level is-mobile">
                 <div class="level-item">
                   <div class="is-widget-label"><h3 class="subtitle is-spaced">
-                    Rendimiento
+                    Reportes
                   </h3>
                     <h1 class="title">
-                      256%
+                      {{ $report->count() }}
                     </h1>
                   </div>
                 </div>
                 <div class="level-item has-widget-icon">
-                  <div class="is-widget-icon"><span class="icon has-text-success is-large"><i
-                      class="mdi mdi-finance mdi-48px"></i></span>
+                  <div class="is-widget-icon"><span class="icon has-text-success is-large">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5" />
+                    </svg>
+
                   </div>
                 </div>
               </div>
