@@ -92,19 +92,20 @@
 
         <hr>
         <h3 class="title">Actualizar Estado</h3>
-        <form action="" method="post">
-            @csrf
+        <form action="{{ route('apelacion.status', $apelacion->id) }}" method="post">
             @method('PUT')
+            @csrf
+              <input type="hidden" name="id_apelacion" value="{{ $apelacion->id }}">
 
             <div class="columns">
               <div class="column">
-                <button class="button is-warning">Pendiente</button>
+                <button class="button is-warning" name="status" value="Pendiente">Pendiente</button>
               </div>
               <div class="column">
-                <button class="button is-info">Observacion</button>
+                <button class="button is-info" name="status" value="Observacion">Observacion</button>
               </div>
               <div class="column">
-                <button class="button is-success">Resuelto</button>
+                <button class="button is-success" name="status" value="Resuelto">Resuelto</button>
               </div>
             </div>
         </form>

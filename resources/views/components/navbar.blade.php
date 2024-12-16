@@ -1,7 +1,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation" style="transiton: .3s ease;">
     <div class="navbar-brand">
       <a class="navbar-item " href="/">
-        <h3 class="has-text-weight-bold	">Rhampherios Blog</h3>
+        <h3 class="has-text-weight-bold	">Rhampherios Foro</h3>
       </a>
   
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

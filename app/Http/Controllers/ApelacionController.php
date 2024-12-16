@@ -71,9 +71,18 @@ class ApelacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Apelacion $apelacion)
+    public function edit(Request $request, Apelacion $apelacion)
     {
-        //
+        $request->validate([
+            'status' => 'required'
+        ]);
+
+        $apelacion = Apelacion::findOrFail($request->id_apelacion);
+        $apelacion->status = $request->status;
+
+        $apelacion->save(); 
+    
+        return redirect()->back();
     }
 
     /**

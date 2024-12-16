@@ -54,6 +54,7 @@ Route::put('/usuario/editar/{id}', [homeController::class, 'update'])->name('upd
 Route::put('/usuario/bloquear/{id}', [AdminController::class, 'report_user'])->name('report.user');
 Route::put('/usuario/desbloquear/{id}', [AdminController::class, 'unlock_user'])->name('report.user.unlock');
 Route::put('/apelacion/respuesta/{id}', [ApelacionController::class, 'show'])->name('apelacion.show');
+Route::put('/apelacion/estado/{id}', [ApelacionController::class, 'edit'])->name('apelacion.status');
 
 Route::patch('/usuario/social-media/{id}', [SocialMediaController::class, 'update'])->name('update.social');
 
