@@ -31,6 +31,7 @@ class ReportController extends Controller
         Report::create([
             'user_id' => Auth::id(),
             'post_id' => $id,
+            'reported_user_id' => $request->id_reported_user,
             'reason' => $request->input('reason'),
         ]);
 

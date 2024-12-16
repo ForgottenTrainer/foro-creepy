@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apelacion;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,8 +17,9 @@ class homeController extends Controller
     {
         $posts = Post::orderBy("created_at","desc")->paginate(10);
         $user = User::all();
+        $apelaciones = Apelacion::all();
 
-        return view('home.index', compact('posts','user'));
+        return view('home.index', compact('posts','user', 'apelaciones'));
     }
 
     public function show ($id)

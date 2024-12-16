@@ -61,6 +61,7 @@
                     <th>Reportado Por</th>
                     <th>Historia Reportada</th>
                     <th>Razon</th>
+                    <th>ID usuario reportado</th>
                     <th>Cuando se creo</th>
                     <th>Acciones</th>
                 </tr>
@@ -72,6 +73,7 @@
 
                         <td data-label="Reported Post">{{ $report->post->id ?? 'N/A' }}</td>
                         <td data-label="Reason">{{ $report->reason }}</td>
+                        <td data-label="Reported-user">{{ $report->reported_user_id }}</td>
                         <td data-label="Created">
                             <small class="has-text-grey is-abbr-like" title="{{ $report->created_at->format('M d, Y') }}">{{ $report->created_at->format('M d, Y') }}</small>
                         </td>
@@ -106,5 +108,5 @@
               </div>
             </div>
           </div>
-        </div>
+      </div>
 @endsection

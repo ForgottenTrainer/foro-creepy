@@ -30,6 +30,7 @@ Route::get('/post/editar/{id}', [PostController::class, 'update'])->name('edit.p
 Route::get('/search', [homeController::class, 'search'])->name('index.search');
 Route::get('/usuario-ver/{id}', [ProfileController::class, 'index'])->name('index.profile');
 Route::get('/apelaciones', [ApelacionController::class, 'index'])->name('index.apelacion');
+Route::get('/apelaciones/{id}', [ApelacionController::class, 'create'])->name('apelacion.response');
 
 
 Route::post('/posts-create', [PostController::class, 'create'])->name('index.create');
@@ -38,6 +39,8 @@ Route::post('/register-create', [LoginController::class, 'registerCreate'])->nam
 Route::post('/comentario/create', [ComentariosController::class, 'store'])->name('comentario.create');
 Route::post('/usuario/social-media', [SocialMediaController::class, 'store'])->name('store.social');
 Route::post('/register-create/admin', [LoginController::class, 'registerAdminCreate'])->name('admin.create');
+Route::post('/apelaciones-create', [ApelacionController::class, 'store'])->name('apelacion.create');
+
 
 
 Route::middleware(['auth'])->group(function () {
@@ -50,6 +53,7 @@ Route::put('/post/editar/{id}', [PostController::class, 'updatePost'])->name('up
 Route::put('/usuario/editar/{id}', [homeController::class, 'update'])->name('update.user');
 Route::put('/usuario/bloquear/{id}', [AdminController::class, 'report_user'])->name('report.user');
 Route::put('/usuario/desbloquear/{id}', [AdminController::class, 'unlock_user'])->name('report.user.unlock');
+Route::put('/apelacion/respuesta/{id}', [ApelacionController::class, 'show'])->name('apelacion.show');
 
 Route::patch('/usuario/social-media/{id}', [SocialMediaController::class, 'update'])->name('update.social');
 

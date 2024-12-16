@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Apelacion;
+use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApelacionController extends Controller
 {
@@ -13,15 +15,19 @@ class ApelacionController extends Controller
     public function index()
     {
         //
-        return view('admin.quejas');
+        $apelacion = Apelacion::all();
+        return view('admin.quejas', compact('apelacion'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $reporte = Report::all();
+        $apelacion = Apelacion::where('id',$id)->first();
+
+        return view('admin.respuesta', compact('apelacion','reporte'));
     }
 
     /**
@@ -29,15 +35,37 @@ class ApelacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'description' => 'required',
+        ]);
+
+        $apelacion = Apelacion::create([
+            'apelamiento' => $request->description,
+            'status' => 'Pendiente',
+            'id_user' => Auth::user()->id,
+        ]);
+
+        $apelacion->save();
+
+        return redirect()->back()->with('success', 'Apelación enviada correctamente, evaluaremos tu mensaje.');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Apelacion $apelacion)
+    public function show(Apelacion $apelacion, Request $request)
     {
-        //
+        $request->validate([
+            'respuesta' => 'required'
+        ]);
+
+        $apelacion = Apelacion::findOrFail($request->id_apelacion);
+        $apelacion->respuesta = $request->respuesta;
+
+        $apelacion->save(); 
+    
+        return redirect()->back();
     }
 
     /**

@@ -71,6 +71,13 @@
 
                 <form action="{{ route('report.post', $i->id) }}" method="POST" class="mt-4">
                     @csrf
+                    
+                    @foreach ($user as $item)
+                        @if ($i->id_perfil == $item->id)
+                            <input type="hidden" name="id_reported_user" value="{{ $item->id }}">
+                        @endif
+                    @endforeach
+
                     <div class="field">
                         <label class="label">Si encuentras algo inapropiado, repórtalo</label>
                         <p class="is-size-7 mb-2">Máximo 255 caracteres</p>

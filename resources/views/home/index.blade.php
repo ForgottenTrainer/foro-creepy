@@ -71,7 +71,32 @@
 @else
 
     <div class="container">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        @if ($errors->any())
+            <div class="notification is-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+
+  
+      @if (session('success'))
+        <script>
+          Swal.fire({
+            icon: "success",
+            title: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        </script>
+      @endif
       <div class="columns">
+
         <div class="column is-8 is-offset-2">
           <div class="card">
             <header class="card-header">
@@ -81,18 +106,50 @@
               <p>Su cuenta ha sido baneada.</p>
               <p>Si cree que esto es un error, por favor contacte a soporte.</p>
               <br>
-              <form action="" method="post">
-                @csrf
 
-                <textarea class="textarea" placeholder="Envianos un mensaje"></textarea>
 
-                <button class="button is-primary m-2" type="submit">Enviar</button>
-              </form>
+                @php
+                    // Verificamos si el usuario tiene alguna apelación pendiente
+                    $hasPendingAppeal = $apelaciones->where('id_user', Auth::user()->id)->where('status', 'Pendiente')->count() > 0;
+                @endphp
+
+                @php
+                // Verificamos si el usuario tiene alguna apelación pendiente
+                    $hasPendingAppeal = $apelaciones->where('id_user', Auth::user()->id)->where('status', 'Terminado')->count() > 0;
+                @endphp
+                
+                @if ($hasPendingAppeal)
+                    <p class="p-3 has-background-link rounded has-text-primary-light" style="border-radius: 10px;">
+                        Estate atento a la respuesta de algún administrador.
+                    </p>
+                @else
+                    <!-- Solo muestra el formulario si no hay apelaciones pendientes -->
+                    <form action="{{ route('apelacion.create') }}" method="POST">
+                        @csrf
+                        <textarea class="textarea" name="description" placeholder="Envianos un mensaje"></textarea>
+                
+                        <button class="button is-primary m-2" type="submit">Enviar</button>
+                    </form>
+                @endif
+
+              <hr>
+              <p class="card-header-title">
+                Respuesta
+              </p>
+              <p>
+                @foreach ($apelaciones as $item)
+                    @if ($item->id_user == Auth::user()->id)
+                        {{ $item->respuesta }}
+                    @endif
+                @endforeach
+              </p>
+              
             </div>
           </div>
         </div>
       </div>
     </div>
+    
 
 @endif
 

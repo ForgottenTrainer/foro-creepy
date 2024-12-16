@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('apelacions', function (Blueprint $table) {
             $table->id();
+            $table->string('id_user');
+            $table->string('apelamiento');
+            $table->string('status');
+            $table->string('respuesta')->nullable();
             $table->timestamps();
         });
     }
